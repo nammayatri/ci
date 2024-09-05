@@ -15,15 +15,15 @@
             let
               inherit (inputs.nixpkgs.lib) listToAttrs nameValuePair attrNames;
               inherit (builtins) map readDir;
-              #overrideInputs = {
-              #  common = ./common;
-              #};
+              overrideInputs = {
+                common = ./common;
+              };
               hosts = attrNames (readDir ./hosts);
               systems = {
                 ny-ci-nixos = [ "x86_64-linux" ];
               };
               configForHost = name: {
-                # inherit overrideInputs;
+                inherit overrideInputs;
                 systems = systems.${name};
                 dir = "./hosts/${name}";
               };
