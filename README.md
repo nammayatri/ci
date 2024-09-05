@@ -6,7 +6,7 @@ CI for Nammayatri
 In the nix shell, run:
 
 ```
-just deploy
+just deploy ny-ci-nixos
 ```
 
 >[!NOTE]
@@ -15,5 +15,5 @@ just deploy
 ## Progress
 
 - [ ] NixOS CI: Running GitHub runners
-- [ ] Refactor to prepare for multiple hosts
+- [x] Refactor to prepare for multiple hosts
 - [ ] macOS CI: nix-darwin
