@@ -48,5 +48,9 @@
             programs.bash.enable = true;
           };
         };
+
+      perSystem = { pkgs, ... }: {
+        formatter = pkgs.nixpkgs-fmt;
+      };
     };
 }
