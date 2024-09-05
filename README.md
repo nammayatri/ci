@@ -14,6 +14,6 @@ just deploy ny-ci-nixos
 
 ## Progress
 
-- [ ] NixOS CI: Running GitHub runners
+- [x] NixOS CI: Running GitHub runners
 - [x] Refactor to prepare for multiple hosts
 - [ ] macOS CI: nix-darwin
