@@ -10,7 +10,7 @@ just deploy ny-ci-nixos
 ```
 
 >[!NOTE]
-> This requires you to be connected to Nammayatri Tailscale network!
+> This requires you to be connected to Nammayatri [Tailscale](https://login.tailscale.com/admin/machines) network!
 
 ## Progress
 
