@@ -25,6 +25,7 @@
           };
           imports = [
             inputs.common.nixosModules.default
+            inputs.common.nixosModules.github-runner
             self.nixosModules.home-manager
             ./nixos/hardware-configuration.nix
             ./nixos/configuration.nix

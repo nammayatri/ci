@@ -3,6 +3,7 @@
     # Principle inputs (updated by `nix run .#update`)
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     flake-parts.url = "github:hercules-ci/flake-parts";
+    ragenix.url = "github:yaxitech/ragenix";
   };
 
   outputs = inputs@{ self, ... }:
@@ -34,13 +35,15 @@
           root.dir = ".";
         };
 
-      perSystem = { pkgs, ... }: {
+      perSystem = { inputs', pkgs, ... }: {
         formatter = pkgs.nixpkgs-fmt;
 
         devShells.default = pkgs.mkShell {
           name = "ny-ci-shell";
           packages = with pkgs; [
             just
+            nixd
+            inputs'.ragenix.packages.default
           ];
         };
       };
