@@ -6,42 +6,32 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     flake-parts.url = "github:hercules-ci/flake-parts";
-    nixos-flake.url = "github:srid/nixos-flake";
+
+    common = { };
   };
 
   outputs = inputs@{ self, ... }:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" "aarch64-darwin" ];
-      imports = [ inputs.nixos-flake.flakeModule ];
+      imports = [ inputs.common.inputs.nixos-flake.flakeModule ];
 
       flake = {
         # Configurations for Linux (NixOS) machines
         nixosConfigurations.ny-ci-nixos = self.nixos-flake.lib.mkLinuxSystem {
           nixpkgs.hostPlatform = "x86_64-linux";
-          nixos-flake.sshTarget = "admin@ny-ci-nixos";
+          nixos-flake = {
+            sshTarget = "admin@ny-ci-nixos";
+            overrideInputs = [ "common" ];
+          };
           imports = [
+            inputs.common.nixosModules.default
+            self.nixosModules.home-manager
             ./nixos/hardware-configuration.nix
             ./nixos/configuration.nix
             {
               system.stateVersion = "24.05";
             }
-            # Setup home-manager in NixOS config
-            self.nixosModules.home-manager
-            {
-              home-manager.users.admin = {
-                imports = [ self.homeModules.default ];
-                home.stateVersion = "24.05";
-              };
-            }
           ];
-        };
-
-        # home-manager configuration goes here.
-        homeModules.default = { pkgs, ... }: {
-          imports = [ ];
-          programs.git.enable = true;
-          programs.starship.enable = true;
-          programs.bash.enable = true;
         };
       };
     };

@@ -29,23 +29,6 @@
     LC_TIME = "en_IN";
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.admin = {
-    isNormalUser = true;
-    extraGroups = [ "networkmanager" "wheel" ];
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHQRxPoqlThDrkR58pKnJgmeWPY9/wleReRbZ2MOZRyd"
-    ];
-  };
-  security.sudo.wheelNeedsPassword = false;
-
-  # Allow unfree packages
-  nix.settings.experimental-features = "nix-command flakes";
-
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
-  services.tailscale.enable = true;
-
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
