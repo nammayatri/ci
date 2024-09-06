@@ -21,7 +21,7 @@
       ];
     };
     orgRunners = {
-      "nammayatri".num = 8;
+      "nammayatri".num = 4;
     };
   };
 
