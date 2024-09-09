@@ -16,15 +16,23 @@ in
 
   # Services
   services = lib.mkMerge [
+    # Linux-only services
     (lib.optionalAttrs isLinux {
-      netdata.enable = true;
       openssh.enable = true;
     })
+
+    # Mac-only services
     (lib.optionalAttrs isDarwin {
       nix-daemon.enable = true;
     })
+
+    # Services available on both Linux and Mac
     {
       tailscale.enable = true;
+      netdata = {
+        enable = true;
+        package = pkgs.netdataCloud;
+      };
     }
   ];
 
@@ -56,7 +64,7 @@ in
     registry.nixpkgs.flake = flake.inputs.nixpkgs; # Make `nix shell` etc use pinned nixpkgs
     settings = {
       max-jobs = "auto";
-      experimental-features = "nix-command flakes repl-flake";
+      experimental-features = "nix-command flakes";
       # Nullify the registry for purity.
       flake-registry = builtins.toFile "empty-flake-registry.json" ''{"flakes":[],"version":2}'';
       trusted-users = [
@@ -68,11 +76,15 @@ in
     };
   };
 
-  # Overlays
-  nixpkgs.overlays = [
-    (final: prev: {
-      # Add custom packages here
-      omnix = common.inputs.omnix.packages.${system}.default;
-    })
-  ];
+  nixpkgs = {
+    # For netdata
+    config.allowUnfree = true;
+    # Overlays
+    overlays = [
+      (final: prev: {
+        # Add custom packages here
+        omnix = common.inputs.omnix.packages.${system}.default;
+      })
+    ];
+  };
 }
