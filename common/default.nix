@@ -75,6 +75,13 @@ in
       # To allow building on rosetta
       extra-platforms = lib.mkIf isDarwin "aarch64-darwin x86_64-darwin";
     };
+
+    # When disk space goes low (100GB left), run garbage collection until 1TB is free.
+    # https://nixos.wiki/wiki/Storage_optimization#Automatic
+    extraOptions = ''
+      min-free = ${toString (100 * 1024 * 1024 * 1024)}
+      max-free = ${toString (1024 * 1024 * 1024 * 1024)}
+    '';
   };
 
   nixpkgs = {
