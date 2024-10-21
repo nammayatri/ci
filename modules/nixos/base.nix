@@ -1,8 +1,9 @@
 # Module common to all hosts
 { flake, pkgs, lib, ... }:
 let
-  inherit (flake.inputs.common.config) adminUser admins;
-  inherit (flake.inputs) common;
+  inherit (flake) inputs;
+  inherit (inputs) self;
+  inherit (self.settings) adminUser admins;
   inherit (pkgs.stdenv) isLinux isDarwin;
   inherit (pkgs.stdenv.hostPlatform) system;
 in
@@ -91,7 +92,7 @@ in
     overlays = [
       (final: prev: {
         # Add custom packages here
-        omnix = common.inputs.omnix.packages.${system}.default;
+        omnix = inputs.omnix.packages.${system}.default;
       })
     ];
   };
