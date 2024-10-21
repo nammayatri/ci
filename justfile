@@ -3,7 +3,7 @@ default:
 
 # List hosts
 hosts:
-    ls ./hosts
+    ls ./configurations/{nixos,darwin}
 
 # Auto-format source tree
 fmt:
@@ -11,8 +11,8 @@ fmt:
 
 # Deploy the given host (e.g.: `just deploy sambar`)
 deploy HOST:
-    nix run --override-input common ./common ./hosts/{{HOST}}#activate {{HOST}}
+    nix run .#activate {{HOST}}
 
 # Rekey all secrets (usually done after adding/removing hosts/users)
 secrets-rekey:
-    cd ./common/secrets && agenix -r
+    cd ./modules/nixos/secrets && agenix -r

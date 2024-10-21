@@ -1,8 +1,9 @@
 { flake, pkgs, lib, ... }:
 
 let
-  inherit (flake.inputs.common.config) adminUser;
   inherit (pkgs.stdenv) isLinux isDarwin;
+  inherit (flake.inputs) self;
+  inherit (self.settings) adminUser;
 in
 {
   home-manager.users.${adminUser} = {
