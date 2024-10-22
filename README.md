@@ -1,5 +1,6 @@
 # ci
-Nammayatri's CI machine configuration. We are responsible for this organization's Nix-native self-hosted runners.[^1]
+
+Nammayatri's CI machine configuration managed using [nixos-unified](https://nixos-unified.org/autowiring.html). We are responsible for this organization's Nix-native self-hosted runners.[^1]
 
 [^1]: Uses https://github.com/juspay/github-ci-nix
 
