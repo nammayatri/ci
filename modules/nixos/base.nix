@@ -61,7 +61,7 @@ in
 
   # Nix settings
   nix = {
-    package = pkgs.nixVersions.nix_2_23;
+    # package = pkgs.nixVersions.nix_2_23;
     nixPath = [ "nixpkgs=${flake.inputs.nixpkgs}" ]; # Enables use of `nix-shell -p ...` etc
     registry.nixpkgs.flake = flake.inputs.nixpkgs; # Make `nix shell` etc use pinned nixpkgs
     settings = {
