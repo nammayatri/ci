@@ -1,4 +1,8 @@
 { flake, pkgs, ... }:
+
+let
+  githubRunnerVersion = "2.320.0";
+in
 {
   imports = [
     flake.inputs.github-nix-ci.nixosModules.default

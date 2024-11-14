@@ -1,0 +1,101 @@
+name: update-nixpkgs-flake
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '* * * * 4'
+jobs:
+  check-and-update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@v1
+      
+      - name: Get current self-hosted runner version
+        id: current-version
+        run: |
+          if [ ! -f "modules/nixos/github-runner.nix" ]; then
+            echo "Error: github-runner.nix not found"
+            exit 1
+          fi
+          CURRENT_VERSION=$(grep -oE 'githubRunnerVersion = "[^"]+"' modules/nixos/github-runner.nix | sed 's/githubRunnerVersion = "//;s/"$//')
+          echo "current=$CURRENT_VERSION" >> $GITHUB_OUTPUT
+          echo "Current version: $CURRENT_VERSION"
+      
+      - name: Get nixpkgs runner version
+        id: nixpkgs-version
+        run: |
+          NIXPKGS_VERSION=$(curl -s "https://api.github.com/repos/NixOS/nixpkgs/contents/pkgs/development/tools/continuous-integration/github-runner/default.nix?ref=nixos-24.05" \
+            | jq -r '.content' \
+            | base64 -d \
+            | grep -oP 'version = "\K[^"]+')
+          echo "version=$NIXPKGS_VERSION" >> $GITHUB_OUTPUT
+          echo "Nixpkgs version (nixos-24.05): $NIXPKGS_VERSION"
+      
+      - name: Get official runner version
+        id: official-version
+        run: |
+          LATEST_VERSION=$(curl -s https://api.github.com/repos/actions/runner/releases/latest | jq -r .tag_name | sed 's/^v//')
+          echo "latest=$LATEST_VERSION" >> $GITHUB_OUTPUT
+          echo "Latest version: $LATEST_VERSION"
+      
+      - name: Compare versions
+        id: version-check
+        run: |
+          CURRENT="${{ steps.current-version.outputs.current }}"
+          NIXPKGS="${{ steps.nixpkgs-version.outputs.version }}"
+          LATEST="${{ steps.official-version.outputs.latest }}"
+          
+          function version_to_num() {
+            echo "$1" | awk -F. '{ printf("%d%03d%03d\n", $1,$2,$3); }'
+          }
+          
+          CURRENT_NUM=$(version_to_num "$CURRENT")
+          NIXPKGS_NUM=$(version_to_num "$NIXPKGS")
+          LATEST_NUM=$(version_to_num "$LATEST")
+          
+          if [ $CURRENT_NUM -lt $NIXPKGS_NUM ] && [ $NIXPKGS_NUM -lt $LATEST_NUM ]; then
+            echo "should_update=true" >> $GITHUB_OUTPUT
+            echo "update_version=$NIXPKGS" >> $GITHUB_OUTPUT
+            echo "Update needed: Current($CURRENT) < Nixpkgs($NIXPKGS) < Latest($LATEST)"
+          else
+            echo "should_update=false" >> $GITHUB_OUTPUT
+            echo "No update needed: Versions don't meet criteria"
+            echo "Current: $CURRENT"
+            echo "Nixpkgs (nixos-24.05): $NIXPKGS"
+            echo "Latest: $LATEST"
+          fi
+      
+      - name: Update files
+        if: steps.version-check.outputs.should_update == 'true'
+        run: |
+          sed -i "s/githubRunnerVersion = \".*\"/githubRunnerVersion = \"${{ steps.nixpkgs-version.outputs.version }}\"/" modules/nixos/github-runner.nix
+          nix flake lock --update-input nixpkgs
+      - name: Create Pull Request
+        if: steps.version-check.outputs.should_update == 'true'
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: |
+            Update GitHub Runner to ${{ steps.nixpkgs-version.outputs.version }}
+            
+            - Current version: ${{ steps.current-version.outputs.current }}
+            - New version (nixos-24.05): ${{ steps.nixpkgs-version.outputs.version }}
+            - Latest official version: ${{ steps.official-version.outputs.latest }}
+          branch: update-github-runner
+          delete-branch: true
+          title: 'Update GitHub Runner to ${{ steps.nixpkgs-version.outputs.version }}'
+          body: |
+            Updates GitHub Runner version:
+            - Current version: ${{ steps.current-version.outputs.current }}
+            - New version (nixos-24.05): ${{ steps.nixpkgs-version.outputs.version }}
+            - Latest official version: ${{ steps.official-version.outputs.latest }}
+            
+            This PR updates both:
+            1. The `githubRunnerVersion` in `modules/nixos/github-runner.nix`
+            2. The `flake.lock` file with updated nixpkgs input
+          labels: |
+            dependencies
+            automated
