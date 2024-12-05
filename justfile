@@ -13,6 +13,11 @@ fmt:
 deploy HOST:
     nix run .#activate {{HOST}}
 
+deploy-nixos:
+    nix run .#activate ny-ci-nixos
+deploy-mac:
+    nix run .#activate basantis-Mac-Studio
+
 # Rekey all secrets (usually done after adding/removing hosts/users)
 secrets-rekey:
     cd ./modules/nixos/secrets && agenix -r
