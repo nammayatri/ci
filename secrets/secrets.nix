@@ -3,7 +3,11 @@ let
   users = builtins.attrValues admins;
 
   ny-ci-nixos = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPWODODitFFGrGbPRaw72O1/LCANtmQGIDwp2CGi+VOM root@nixos";
-  systems = [ ny-ci-nixos ];
+  basantis-Mac-Studio = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL48yy04TzTi30iwNPr1LOvzOnwupL+yBvo5UXpPDLBh";
+  systems = [ 
+    ny-ci-nixos 
+    basantis-Mac-Studio
+  ];
 in
 {
   # Public systems
