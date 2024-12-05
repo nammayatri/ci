@@ -12,6 +12,7 @@ in
   imports = [
     self.nixosModules.default
     self.nixosModules.github-runner
+    self.nixosModules.distributed-builds
     ./nixos/hardware-configuration.nix
     ./nixos/configuration.nix
     {
