@@ -6,10 +6,16 @@ Nammayatri's CI machine configuration managed using [nixos-unified](https://nixo
 
 ## Deploying
 
-In the nix shell, run:
+To deploy the NixOS machine:
 
 ```
-just deploy ny-ci-nixos
+just deploy-nixos
+```
+
+To deploy to the Mac studio:
+
+```
+just deploy-mac
 ```
 
 >[!NOTE]
