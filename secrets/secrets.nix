@@ -14,4 +14,5 @@ in
   "hello.age".publicKeys = users ++ systems;
   "ny-ci-nixos-ssh.age".publicKeys = users ++ systems;
   "github-nix-ci/nammayatri.token.age".publicKeys = users ++ systems;
+  "harmonia-secret.age".publicKeys = users ++ systems;
 }
