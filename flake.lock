@@ -150,6 +150,30 @@
         "type": "github"
       }
     },
+    "harmonia": {
+      "inputs": {
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "treefmt-nix": "treefmt-nix"
+      },
+      "locked": {
+        "lastModified": 1733364174,
+        "narHash": "sha256-e5RyJeFuik5jIKCwlgFR77p1oFnNZk42/4iP1mzXvWw=",
+        "owner": "nix-community",
+        "repo": "harmonia",
+        "rev": "e7cd871ae67fd0ed3ec1db6acc336e499110fe70",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "harmonia",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -388,7 +412,7 @@
         "nixpkgs": "nixpkgs_4",
         "rust-flake": "rust-flake",
         "systems": "systems_2",
-        "treefmt-nix": "treefmt-nix"
+        "treefmt-nix": "treefmt-nix_2"
       },
       "locked": {
         "lastModified": 1733280088,
@@ -409,6 +433,7 @@
         "agenix": "agenix",
         "flake-parts": "flake-parts",
         "github-nix-ci": "github-nix-ci",
+        "harmonia": "harmonia",
         "home-manager": "home-manager_2",
         "nix-darwin": "nix-darwin",
         "nixos-unified": "nixos-unified",
@@ -486,6 +511,27 @@
       }
     },
     "treefmt-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "harmonia",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1733222881,
+        "narHash": "sha256-JIPcz1PrpXUCbaccEnrcUS8jjEb/1vJbZz5KkobyFdM=",
+        "owner": "numtide",
+        "repo": "treefmt-nix",
+        "rev": "49717b5af6f80172275d47a418c9719a31a78b53",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "treefmt-nix_2": {
       "inputs": {
         "nixpkgs": [
           "omnix",

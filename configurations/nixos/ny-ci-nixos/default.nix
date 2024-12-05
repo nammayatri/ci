@@ -13,6 +13,7 @@ in
     self.nixosModules.default
     self.nixosModules.github-runner
     self.nixosModules.distributed-builds
+    self.nixosModules.cache-server
     ./nixos/hardware-configuration.nix
     ./nixos/configuration.nix
     {
