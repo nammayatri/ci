@@ -39,21 +39,6 @@
         "type": "github"
       }
     },
-    "cargo-doc-live": {
-      "locked": {
-        "lastModified": 1724704668,
-        "narHash": "sha256-kJFYXlWUodg5WhJ0NuvrP0mCvOT/2AOIo8oGeYLXocs=",
-        "owner": "srid",
-        "repo": "cargo-doc-live",
-        "rev": "b09d5d258d2498829e03014931fc19aed499b86f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "srid",
-        "repo": "cargo-doc-live",
-        "type": "github"
-      }
-    },
     "crane": {
       "inputs": {
         "nixpkgs": [
@@ -431,7 +416,6 @@
     "omnix": {
       "inputs": {
         "cachix-push": "cachix-push",
-        "cargo-doc-live": "cargo-doc-live",
         "devour-flake": "devour-flake",
         "flake-parts": "flake-parts_2",
         "inspect": "inspect",
@@ -440,37 +424,21 @@
         "nix-systems-x86_64-darwin": "nix-systems-x86_64-darwin",
         "nix-systems-x86_64-linux": "nix-systems-x86_64-linux",
         "nixpkgs": "nixpkgs_3",
-        "process-compose-flake": "process-compose-flake",
         "rust-flake": "rust-flake",
         "systems": "systems",
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1729440249,
-        "narHash": "sha256-QAcIrU1F/pMhMEa/iifwtIRx5m20LWBV7G9ivvWjRrc=",
+        "lastModified": 1733280088,
+        "narHash": "sha256-B+S8WhmFdSFzLR7fyVjquLQD9NKbauWCvG1es/wScjY=",
         "owner": "juspay",
         "repo": "omnix",
-        "rev": "f1ac2222215a2c4db15297bef601b1c8c0e39c2b",
+        "rev": "d25eab3a63f600e7c9db02e80b2a7c67c6a76f3a",
         "type": "github"
       },
       "original": {
         "owner": "juspay",
         "repo": "omnix",
-        "type": "github"
-      }
-    },
-    "process-compose-flake": {
-      "locked": {
-        "lastModified": 1718031437,
-        "narHash": "sha256-+RrlkAVZx0QhyeHAGFJnjST+/7Dc3zsDU3zAKXoDXaI=",
-        "owner": "Platonic-Systems",
-        "repo": "process-compose-flake",
-        "rev": "9344fac44edced4c686721686a6ad904d067c546",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Platonic-Systems",
-        "repo": "process-compose-flake",
         "type": "github"
       }
     },
@@ -518,16 +486,15 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1725522236,
-        "narHash": "sha256-dP8ie2arXvvNzn5uqHGf3r0x5pfHm4d5rIg3j1fpwcA=",
+        "lastModified": 1730771644,
+        "narHash": "sha256-VEF4j97cGWQSp/pSSWE6KtOvBf+4Ow2iNfhZ6DLgmSQ=",
         "owner": "juspay",
         "repo": "rust-flake",
-        "rev": "ea2bdf67ec3924adb0361630365c34ba8bc11ad9",
+        "rev": "cdc17a1d009674a9a23c7e4749baf474d2419f04",
         "type": "github"
       },
       "original": {
         "owner": "juspay",
-        "ref": "granular-autoWire",
         "repo": "rust-flake",
         "type": "github"
       }
