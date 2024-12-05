@@ -4,7 +4,7 @@
     flake.inputs.github-nix-ci.nixosModules.default
   ];
   services.github-nix-ci = {
-    age.secretsDir = ./secrets;
+    age.secretsDir = ../../secrets;
     runnerSettings = {
       extraPackages = with pkgs; [
         # Nix stuff

@@ -1,5 +1,5 @@
 let
-  inherit (import ../../../settings) admins;
+  inherit (import ../settings) admins;
   users = builtins.attrValues admins;
 
   ny-ci-nixos = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPWODODitFFGrGbPRaw72O1/LCANtmQGIDwp2CGi+VOM root@nixos";
