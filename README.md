@@ -23,8 +23,8 @@ just deploy-mac
 > - be connected to Nammayatri [Tailscale](https://login.tailscale.com/admin/machines) network,
 > - be [an admin](https://github.com/nammayatri/ci/blob/main/common/config/default.nix)
 
-## Progress
+## What's available
 
-- [x] NixOS CI: Running GitHub runners
-- [x] Refactor to prepare for multiple hosts
-- [ ] macOS CI: nix-darwin
+- NixOS CI
+- macOS remote builder
+- Harmonia Cache server
