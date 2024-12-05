@@ -2,7 +2,7 @@
 
 {
   imports = [
-    flake.inputs.ragenix.nixosModules.default
+    flake.inputs.agenix.nixosModules.default
     ./base.nix
     ./home.nix
   ];

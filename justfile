@@ -21,3 +21,7 @@ deploy-mac:
 # Rekey all secrets (usually done after adding/removing hosts/users)
 secrets-rekey:
     cd ./modules/nixos/secrets && agenix -r
+
+# Edit a secret file
+secret-edit:
+    cd ./modules/nixos/secrets && agenix -e $(fd -e age | fzf)
