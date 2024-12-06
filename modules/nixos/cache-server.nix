@@ -17,6 +17,11 @@ in
     signKeyPaths = [
       config.age.secrets."harmonia-secret.age".path
     ];
+    settings = {
+      # Prefer our cache over cache.nixos.org (priority 40)
+      # Lower values means higher priority
+      priority = 35;
+    };
   };
 
   age.secrets = {
