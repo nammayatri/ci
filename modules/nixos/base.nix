@@ -19,6 +19,12 @@ in
     # Linux-only services
     (lib.optionalAttrs isLinux {
       openssh.enable = true;
+      netdata = lib.mkIf pkgs.stdenv.isLinux {
+        enable = true;
+        package = pkgs.netdataCloud;
+      };
+
+
     })
 
     # Services available on both Linux and Mac

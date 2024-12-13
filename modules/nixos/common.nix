@@ -1,14 +1,9 @@
-{ flake, pkgs, lib, ... }:
+{ flake, pkgs, ... }:
 let
   inherit (flake) inputs;
   inherit (pkgs.stdenv.hostPlatform) system;
 in
 {
-
-  services.netdata = lib.mkIf pkgs.stdenv.isLinux {
-    enable = true;
-    package = pkgs.netdataCloud;
-  };
 
   nixpkgs = {
     # For netdata
