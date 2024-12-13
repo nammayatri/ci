@@ -1,7 +1,5 @@
 # https://x.com/nixos_asia/status/1840073743445491762
 {
-  age.secretsDir = ../../secrets;
-
   nix.settings.trusted-users = [ "nix-user" ];
   users.users."nix-user" = {
     openssh.authorizedKeys.keys = [
