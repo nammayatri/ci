@@ -63,11 +63,6 @@ in
     settings = {
       max-jobs = "auto";
 
-      # To workaround "stack overflow; max-call-depth exceeded" error from latest Nix when building nammayatri:
-      # https://github.com/NixOS/nix/issues/9627
-      # https://github.com/nix-community/robotnix/issues/224
-      max-call-depth = 10000000;
-
       experimental-features = "nix-command flakes";
       # Nullify the registry for purity.
       flake-registry = builtins.toFile "empty-flake-registry.json" ''{"flakes":[],"version":2}'';
