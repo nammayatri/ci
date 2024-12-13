@@ -11,6 +11,7 @@ in
   };
   imports = [
     self.nixosModules.default
+    flake.inputs.github-nix-ci.nixosModules.default
     self.nixosModules.github-runner
     self.nixosModules.distributed-builds
     self.nixosModules.cache-server

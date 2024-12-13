@@ -5,7 +5,6 @@ let
   inherit (inputs) self;
   inherit (self.settings) adminUser admins;
   inherit (pkgs.stdenv) isLinux isDarwin;
-  inherit (pkgs.stdenv.hostPlatform) system;
 in
 {
   # Packages
@@ -22,18 +21,9 @@ in
       openssh.enable = true;
     })
 
-    # Mac-only services
-    (lib.optionalAttrs isDarwin {
-      nix-daemon.enable = true;
-    })
-
     # Services available on both Linux and Mac
     {
       tailscale.enable = true;
-      netdata = {
-        enable = true;
-        package = pkgs.netdataCloud;
-      };
     }
   ];
 
@@ -91,15 +81,5 @@ in
     '';
   };
 
-  nixpkgs = {
-    # For netdata
-    config.allowUnfree = true;
-    # Overlays
-    overlays = [
-      (final: prev: {
-        # Add custom packages here
-        omnix = inputs.omnix.packages.${system}.default;
-      })
-    ];
-  };
+
 }

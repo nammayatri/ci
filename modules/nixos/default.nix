@@ -3,6 +3,7 @@
 {
   imports = [
     flake.inputs.agenix.nixosModules.default
+    ./common.nix
     ./base.nix
     ./home.nix
   ];

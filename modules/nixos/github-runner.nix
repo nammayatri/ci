@@ -1,8 +1,5 @@
-{ flake, pkgs, ... }:
+{ pkgs, ... }:
 {
-  imports = [
-    flake.inputs.github-nix-ci.nixosModules.default
-  ];
   services.github-nix-ci = {
     age.secretsDir = ../../secrets;
     runnerSettings = {

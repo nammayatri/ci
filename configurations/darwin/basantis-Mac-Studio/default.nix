@@ -6,8 +6,12 @@ let
 in
 {
   imports = [
+    self.nixosModules.common
     self.darwinModules.default
     self.darwinModules.remote-builder
+    flake.inputs.agenix.nixosModules.default
+    # flake.inputs.github-nix-ci.nixosModules.default
+    # self.nixosModules.github-runner
   ];
 
   nixpkgs.hostPlatform = "aarch64-darwin";

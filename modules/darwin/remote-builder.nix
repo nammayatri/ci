@@ -1,10 +1,5 @@
 # https://x.com/nixos_asia/status/1840073743445491762
-{ flake, ... }:
 {
-  imports = [
-    flake.inputs.agenix.nixosModules.default
-  ];
-
   age.secretsDir = ../../secrets;
 
   nix.settings.trusted-users = [ "nix-user" ];
