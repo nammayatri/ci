@@ -10,8 +10,8 @@ in
     self.darwinModules.default
     self.darwinModules.remote-builder
     flake.inputs.agenix.darwinModules.default
-    # flake.inputs.github-nix-ci.darwinModules.default
-    # self.nixosModules.github-runner
+    flake.inputs.github-nix-ci.darwinModules.default
+    self.nixosModules.github-runner
   ];
 
   nixpkgs.hostPlatform = "aarch64-darwin";
