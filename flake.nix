@@ -13,6 +13,8 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nix-darwin.url = "github:LnL7/nix-darwin";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+
     harmonia.url = "github:nix-community/harmonia";
     harmonia.inputs = {
       nixpkgs.follows = "nixpkgs";
