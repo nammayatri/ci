@@ -27,9 +27,11 @@
 
   # GC so the CI doesn't fill up the disk
   # See https://nixos.wiki/wiki/Storage_optimization#Automation
-  nix.gc = {
+  /* Disabling until doing pinning
+    nix.gc = {
     automatic = true;
     dates = "weekly";
     options = "--delete-older-than 30d";
-  };
+    };
+  */
 }
