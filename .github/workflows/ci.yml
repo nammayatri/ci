@@ -14,7 +14,10 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   build:
-    runs-on: x86_64-linux
+    strategy:
+      matrix: 
+        system: [ x86_64-linux , aarch64-darwin ]
+    runs-on: ${{ matrix.system }}
 
     steps:
       - uses: actions/checkout@v4
