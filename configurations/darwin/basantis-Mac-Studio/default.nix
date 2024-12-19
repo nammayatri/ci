@@ -9,6 +9,7 @@ in
     self.nixosModules.common
     self.darwinModules.default
     self.darwinModules.remote-builder
+    self.darwinModules.aarch64-linux-builder
     flake.inputs.agenix.darwinModules.default
     flake.inputs.github-nix-ci.darwinModules.default
     self.nixosModules.github-runner
