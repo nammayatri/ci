@@ -27,7 +27,9 @@
 
   # GC so the CI doesn't fill up the disk
   # See https://nixos.wiki/wiki/Storage_optimization#Automation
-  /* Disabling until doing pinning
+  #
+  # See also ~/gcroots
+  /*
     nix.gc = {
     automatic = true;
     dates = "weekly";
