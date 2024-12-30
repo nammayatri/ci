@@ -29,11 +29,9 @@
   # See https://nixos.wiki/wiki/Storage_optimization#Automation
   #
   # See also ~/gcroots
-  /*
-    nix.gc = {
+  nix.gc = {
     automatic = true;
-    dates = "weekly";
+    # dates = "weekly";
     options = "--delete-older-than 30d";
-    };
-  */
+  };
 }
