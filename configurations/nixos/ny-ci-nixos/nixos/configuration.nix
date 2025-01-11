@@ -28,6 +28,8 @@
     LC_TELEPHONE = "en_IN";
     LC_TIME = "en_IN";
   };
+  # docker service
+  services.docker.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
