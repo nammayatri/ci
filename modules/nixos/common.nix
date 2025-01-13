@@ -5,6 +5,10 @@ let
 in
 {
 
+  imports = [
+    ./gc-and-pins.nix
+  ];
+
   nix = {
     # package = pkgs.nixVersions.nix_2_25; # 2.25+ for $NIX_CACHE_HOME
 

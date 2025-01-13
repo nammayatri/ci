@@ -20,6 +20,9 @@
       nixpkgs.follows = "nixpkgs";
       flake-parts.follows = "flake-parts";
     };
+
+    devour-flake.url = "github:srid/devour-flake";
+    devour-flake.inputs.flake.url = "github:nammayatri/nammayatri";
   };
 
   outputs = inputs:
