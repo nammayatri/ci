@@ -5,9 +5,14 @@
       ephemeral = true;
       maxJobs = 4;
       config = {
+        nix.gc = {
+          automatic = true;
+          # dates = "weekly";
+          options = "--delete-older-than 30d";
+        };
         virtualisation = {
           darwin-builder = {
-            diskSize = 80 * 1024;
+            diskSize = 160 * 1024;
             memorySize = 24 * 1024;
           };
           cores = 6;
