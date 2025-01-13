@@ -1,0 +1,21 @@
+ci:
+  default:
+    ROOT:
+      dir: .
+      steps:
+        flake-check:
+          enable: false
+        custom:
+develop:
+  default:
+    readme: |
+      🍾 Welcome to the **Nammayatri CI** project
+
+      To deploy,
+
+      ```sh-session
+      just deploy-nixos  # If deploying to NixOS
+      just deploy-mac    # If deploying to macOS
+      ```
+
+      🍎🍎 Run 'just' to see more commands. See <https://nixos.asia/en/vscode> for IDE setup.
