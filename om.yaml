@@ -6,6 +6,10 @@ ci:
         flake-check:
           enable: false
         custom:
+          dummy:
+            type: devshell
+            command:
+              - echo
 develop:
   default:
     readme: |
