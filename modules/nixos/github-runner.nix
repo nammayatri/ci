@@ -24,15 +24,4 @@
       "nammayatri".num = 4;
     };
   };
-
-  # GC so the CI doesn't fill up the disk
-  # See https://nixos.wiki/wiki/Storage_optimization#Automation
-  #
-  # See also ~/gcroots
-  /* nix.gc = {
-    automatic = true;
-    # dates = "weekly";
-    options = "--delete-older-than 30d";
-  };
-  */
 }
