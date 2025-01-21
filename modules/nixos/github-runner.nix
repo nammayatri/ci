@@ -7,6 +7,7 @@
         # Nix stuff
         omnix
         cachix
+        crane
         openssh # flake inputs may use git+ssh
 
         # Docker
