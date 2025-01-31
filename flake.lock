@@ -3541,11 +3541,11 @@
         "true": "true"
       },
       "locked": {
-        "lastModified": 1738105790,
-        "narHash": "sha256-9s6qLJ8syGdz2XfM5ptcMk86SPoSAeWSvSIzh7fnVzk=",
+        "lastModified": 1738285254,
+        "narHash": "sha256-ILdVlKxs77Tg4zK8DfVKfxlyrm6GTKYJ+dn/B0pDL5w=",
         "owner": "juspay",
         "repo": "omnix",
-        "rev": "c644025bf0667ad38ec5568b21c5dd6f1d0b420a",
+        "rev": "e3225181ce3d78412fc27c509f5420c281c5c5fc",
         "type": "github"
       },
       "original": {
