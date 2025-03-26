@@ -7,7 +7,7 @@ in
 {
   nixpkgs.hostPlatform = "x86_64-linux";
   nixos-unified = {
-    sshTarget = "admin@ny-ci-nixos";
+    sshTarget = "root@ny-ci-nixos";
   };
   imports = [
     self.nixosModules.default
