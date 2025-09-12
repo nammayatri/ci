@@ -32,7 +32,7 @@ in
       modules = [ pkgs.nginxModules.zstd ];
     };
     recommendedTlsSettings = true;
-    recommendedZstdSettings = true;
+    experimentalZstdSettings = true;
     virtualHosts.${domain} = {
       locations."/".extraConfig = ''
         proxy_pass http://127.0.0.1:5000;
