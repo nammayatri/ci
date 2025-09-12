@@ -16,7 +16,7 @@ deploy HOST:
 deploy-nixos:
     nix run .#activate ny-ci-nixos
 deploy-mac:
-    nix run .#activate basantis-Mac-Studio
+    nix run .#activate basantis-mac-studio
 
 # Rekey all secrets (usually done after adding/removing hosts/users)
 secrets-rekey:

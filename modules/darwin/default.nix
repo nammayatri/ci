@@ -3,9 +3,6 @@ let
   macAdminUser = "nix-user";
 in
 {
-  services = {
-    nix-daemon.enable = true;
-  };
 
   users.users.${macAdminUser} = {
     home = "/Users/${macAdminUser}";
