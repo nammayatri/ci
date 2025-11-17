@@ -35,6 +35,46 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
+  systemd.services.nix-cache-funnel = {
+    description = "Tailscale Funnel for Nix Cache";
+
+    after = [ "network-online.target" "tailscaled.service" ];
+    wants = [ "network-online.target" "tailscaled.service" ];
+
+    serviceConfig = {
+      User = "root";
+
+      ExecStart = "${pkgs.tailscale}/bin/tailscale funnel --https=443 http://127.0.0.1:80";
+
+      Restart = "always";
+      RestartSec = "10s";
+
+      StartLimitIntervalSec = 60;
+      StartLimitBurst = 5;
+    };
+
+    wantedBy = [ "multi-user.target" ];
+  };
+  
+
+  systemd.services.check-github-runners = {
+    description = "Check and Restart GitHub Runner Services";
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.bash}/bin/bash /root/scripts/check-runners.sh";
+      User = "root"; # Your script uses systemctl restart, which needs root.
+    };
+  };
+
+  systemd.timers.check-github-runners = {
+    description = "Run GitHub Runner Check Script periodically";
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnCalendar = "*:0/11";
+      Persistent = true;
+    };
+  };
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave

@@ -16,16 +16,25 @@ in
   ];
 
   nixpkgs.hostPlatform = "aarch64-darwin";
-  networking.hostName = "basantis-Mac-Studio";
+  networking.hostName = "basantis-mac-studio";
   nixos-unified = {
-    sshTarget = "nix-user@basantis-Mac-Studio";
+    sshTarget = "nix-user@basantis-mac-studio";
   };
+
+  # Configure agenix identity paths explicitly for Darwin
+  age.identityPaths = [ "/Users/nix-user/.ssh/id_ed25519" ];
 
   # For home-manager to work.
   # https://github.com/nix-community/home-manager/issues/4026#issuecomment-1565487545
   users.users."nix-user".home = "/Users/nix-user";
   # home-manager.users."nix-user" = { };
+  
+  # Disable home-manager version check
+  home-manager.users."nix-user" = {
+    home.enableNixpkgsReleaseCheck = false;
+  };
 
+  ids.gids.nixbld = 350;
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
   system.stateVersion = 4;
